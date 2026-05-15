@@ -4,20 +4,21 @@ const dotenv = require('dotenv')
 const connectDB = require('./config/db')
 const todoRoutes = require('./routes/todo.routes')
 
-// Rutas
-app.use('/api/todos', todoRoutes)
-
-// Carga las variables de entorno desde .env
+// cargar variables de entorno
 dotenv.config()
 
-// Conecta a la base de datos
+// Conectar a la base de datos
 connectDB()
 
+// Crear app
 const app = express()
 
 // Middlewares globales
 app.use(cors())
 app.use(express.json())
+
+//  Enrutamiento
+app.use('/api/todos', todoRoutes)
 
 // Ruta de prueba
 app.get('/health', (req, res) => {
